@@ -1,0 +1,17 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #9C27B0;
+    color: #fff;
+}
+
+.site-logo {
+    font-weight: normal;
+}
+
+.nav-link a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 16px;
+}
