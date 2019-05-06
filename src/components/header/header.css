@@ -2,11 +2,16 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #9C27B0;
+    background: #4CAF50;
     color: #fff;
 }
 
 .site-logo {
+    font-weight: normal;
+    color: #fff;
+}
+
+.site-logo h1 {
     font-weight: normal;
 }
 
