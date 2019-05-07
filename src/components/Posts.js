@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import { config } from '../config'
-import Pagination from './Pagination';
 
 class Posts extends React.Component {
 	constructor( props ) {
@@ -73,18 +72,18 @@ class Posts extends React.Component {
 						{ this.renderPostData() }
 						<div className="pagination">
 							{ 1 === currentPage && (
-								<Link onClick={(event)=> this.handlePaginationClick(currentPage+1, event)} to={`/page/${currentPage+1}`}>Next</Link>
+								<span onClick={(event)=> this.handlePaginationClick(currentPage+1, event)}>Next</span>
 							)}
 
 							{ 1 !== currentPage && currentPage !== pageCount && (
 								<React.Fragment>
-									<Link onClick={(event)=> this.handlePaginationClick(currentPage-1, event)} to={`/page/${currentPage-1}`}>Prev</Link>
-									<Link onClick={(event)=> this.handlePaginationClick(currentPage+1, event)} to={`/page/${currentPage+1}`}>Next</Link>
+									<span onClick={(event)=> this.handlePaginationClick(currentPage-1, event)}>Prev</span>
+									<span onClick={(event)=> this.handlePaginationClick(currentPage+1, event)}>Next</span>
 								</React.Fragment>
 							)}
 
 							{ currentPage === pageCount && (
-								<Link onClick={()=> this.handlePaginationClick(1)} to=''>Prev</Link>
+								<span onClick={()=> this.handlePaginationClick(1)}>Prev</span>
 							)}
 						</div>
 					</div>

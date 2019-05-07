@@ -35,7 +35,7 @@ class Users extends React.Component {
 		if ( users.length ) {
 			return users.map( user => (
 				<div key={user.id} className="users-list__item user">
-					<Link to={`/users/${user.id}`}>
+					<Link to={`/user/${user.id}`}>
 						<img src={user._links.avatar.href} className="user__avatar" alt="User Avatar" />
 						<h2 className="user__name">{user.first_name} {user.last_name}</h2>
 					</Link>
