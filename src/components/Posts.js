@@ -11,7 +11,6 @@ class Posts extends React.Component {
 			posts: [],
 			metaData: [],
 			loading: true,
-			currentPage: '',
 		}
 	}
 
@@ -20,7 +19,7 @@ class Posts extends React.Component {
 		return `${config.API_KEY}posts?_format=json&access-token=${config.ACCESS_TOKEN}&page=${pageNo}`;
 	};
 
-	fetchResults = (pageNo = '') => {
+	fetchResults = (pageNo) => {
 		fetch( this.getFetchKey(pageNo) )
 			.then( response => response.json() )
 			.then( jsonData => {
