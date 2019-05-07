@@ -17,12 +17,12 @@ img {
 }
 
 .posts-listing__item {
-    margin-bottom: 16px;
+	margin-bottom: 16px;
+	font-size: 20px;
 }
 
 .posts-listing__item a {
     color: #000;
-    font-size: 20px;
 }
 
 .posts-listing__item a:hover {
