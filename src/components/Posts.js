@@ -11,25 +11,31 @@ class Posts extends React.Component {
 			posts: [],
 			metaData: [],
 			loading: true,
+			currentPage: '',
 		}
 	}
 
-	getFetchKey() {
-		return `${config.API_KEY}posts?_format=json&access-token=${config.ACCESS_TOKEN}&page=${this.props.pageNumber}`;
-	}
+	getFetchKey= (pageNo) => {
+		console.warn( 'page', pageNo );
+		return `${config.API_KEY}posts?_format=json&access-token=${config.ACCESS_TOKEN}&page=${pageNo}`;
+	};
+
+	fetchResults = (pageNo = '') => {
+		fetch( this.getFetchKey(pageNo) )
+			.then( response => response.json() )
+			.then( jsonData => {
+				if ( jsonData._meta.success ) {
+					this.setState({
+						posts: jsonData.result,
+						metaData: jsonData._meta,
+						loading: false,
+					});
+				}
+			} );
+	};
 
 	componentDidMount() {
-		fetch( this.getFetchKey() )
-		.then( response => response.json() )
-		.then( jsonData => {
-			if ( jsonData._meta.success ) {
-				this.setState({
-					posts: jsonData.result,
-					metaData: jsonData._meta,
-					loading: false,
-				});
-			}
-		} );
+		this.fetchResults();
 	}
 
 	renderPostData() {
@@ -45,20 +51,18 @@ class Posts extends React.Component {
 		}
 	}
 
-	renderPagination() {
-		const metaData = this.state.metaData;
-
-		return (
-			<Pagination
-			currentPage={metaData.currentPage}
-			pageCount={metaData.pageCount}
-			/>
-		);
-	}
+	handlePaginationClick = ( pageNo, event ) => {
+		console.warn( 'gotPage', pageNo );
+		event.preventDefault();
+		this.fetchResults(pageNo);
+	};
 
 	render() {
 
 	const isLoading = this.state.loading;
+		const metaData = this.state.metaData;
+		const currentPage = metaData.currentPage;
+		const pageCount = metaData.pageCount;
 
 		return (
 			<div className="container">
@@ -68,7 +72,22 @@ class Posts extends React.Component {
 					<div className="posts-listing">
 						<h1>Post Listing</h1>
 						{ this.renderPostData() }
-						{ this.renderPagination() }
+						<div className="pagination">
+							{ 1 === currentPage && (
+								<Link onClick={(event)=> this.handlePaginationClick(currentPage+1, event)} to={`/page/${currentPage+1}`}>Next</Link>
+							)}
+
+							{ 1 !== currentPage && currentPage !== pageCount && (
+								<React.Fragment>
+									<Link onClick={(event)=> this.handlePaginationClick(currentPage-1, event)} to={`/page/${currentPage-1}`}>Prev</Link>
+									<Link onClick={(event)=> this.handlePaginationClick(currentPage+1, event)} to={`/page/${currentPage+1}`}>Next</Link>
+								</React.Fragment>
+							)}
+
+							{ currentPage === pageCount && (
+								<Link onClick={()=> this.handlePaginationClick(1)} to=''>Prev</Link>
+							)}
+						</div>
 					</div>
 				}
 			</div>
