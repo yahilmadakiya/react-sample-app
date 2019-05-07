@@ -46,7 +46,9 @@ class Post extends React.Component {
 			<React.Fragment>
 				<Header />
 				{ this.state.loading && <p>Loading...</p> }
-				{ this.renderPost() }
+				<div className="container">
+					{ this.renderPost() }
+				</div>
 			</React.Fragment>
 		);
 	}

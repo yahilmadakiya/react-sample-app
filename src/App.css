@@ -1,7 +1,59 @@
 body {
-  background-color: rgba(76, 175, 80, 0.1);
+	background-color: rgba(76, 175, 80, 0.15);
 }
 
 a {
-  text-decoration: none;
+	text-decoration: none;
+}
+
+img {
+	width: 100%;
+}
+
+.container {
+	max-width: 1240px;
+	margin: auto;
+	padding: 32px 16px;
+}
+
+.posts-listing__item {
+    margin-bottom: 16px;
+}
+
+.posts-listing__item a {
+    color: #000;
+    font-size: 20px;
+}
+
+.posts-listing__item a:hover {
+    text-decoration: underline;
+}
+
+.users-list {
+	display: grid;
+    grid-gap: 1.25rem;
+	grid-template-columns: repeat(4 ,minmax(0,1fr));
+}
+
+.users-list__item {
+	text-align: center;
+}
+
+.user__avatar {
+	border-radius: 50%;
+}
+
+.user__name {
+	font-size: 24px;
+}
+
+
+@media screen and (max-width: 480px) {
+	.users-list {
+		grid-template-columns: repeat(2 ,minmax(0,1fr));
+	}
+
+	.user__name {
+		font-size: 16px;
+	}
 }

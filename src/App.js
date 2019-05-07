@@ -6,6 +6,7 @@ import './App.css';
 import Home from './Home';
 import About from './About';
 import Post from './components/Post';
+import Users from './components/Users';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 			<Home path="/" />
 			<About path='/about' />
 			<Post path='/post/:id' />
+			<Users path='/users/' />
 		</Router>
 	);
 }

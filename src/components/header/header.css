@@ -1,9 +1,14 @@
 header {
+    background: #4CAF50;
+}
+.header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #4CAF50;
     color: #fff;
+    max-width: 1300px;
+    margin: auto;
+    padding: 0 16px;
 }
 
 .site-logo {

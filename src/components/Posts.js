@@ -31,7 +31,7 @@ class Posts extends React.Component {
 
 		if ( posts.length ) {
 			return posts.map( post => (
-				<div key={post.id}>
+				<div key={post.id} className="posts-listing__item">
 					<Link to={`/post/${post.id}`}>{post.title}</Link>
 				</div>
 			) )
@@ -40,9 +40,12 @@ class Posts extends React.Component {
 
 	render() {
 		return (
-			<div className="posts">
+			<div className="container">
 				{ this.state.loading && <p>Loading...</p> }
-				{ this.renderPostData() }
+				<div className="posts-listing">
+					<h1>Post Listing</h1>
+					{ this.renderPostData() }
+				</div>
 			</div>
 		);
 	}
